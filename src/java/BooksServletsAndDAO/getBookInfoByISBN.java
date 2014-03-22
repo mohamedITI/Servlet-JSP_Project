@@ -46,7 +46,7 @@ public class getBookInfoByISBN extends HttpServlet {
             
             request.setAttribute("getBookByISBN", book);
             
-            out.println("name of book is: " + book.getBookName());
+            //out.println("name of book is: " + book.getBookName());
             
             System.out.println("name of book is: " + book.getBookName());
             
