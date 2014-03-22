@@ -38,7 +38,7 @@ public class getBooksListByCategoryName extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String categoryName = (String)request.getParameter("categoryName");
             BooksHome BooksDAO = new BooksHome();
-            ArrayList<Books> booksList = BooksDAO.getBooksList(categoryName);
+            ArrayList<Books> booksList = BooksDAO.getBooksListByCategoryName(categoryName);
             
             request.setAttribute("categoryName", booksList);
             
