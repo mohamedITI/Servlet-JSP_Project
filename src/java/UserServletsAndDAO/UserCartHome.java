@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Hibernate;
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
@@ -23,11 +24,29 @@ public class UserCartHome {
 	private static final Log log = LogFactory.getLog(UserCartHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		return HibernateUtil.getSessionFactory();
+        private Session session;
+        
+	protected SessionFactory getSessionFactory() {            
+            return HibernateUtil.getSessionFactory();
 	}
 
+        public UserCartHome() {
+            session = sessionFactory.openSession();
+        }
+
+        public void closeSession()
+        {
+            session.close();
+        }
+        private void beginTransaction()
+        {
+            session.beginTransaction().begin();
+        }
+        private void commitTransaction()
+        {
+            session.getTransaction().commit();
+        }
+        
 	public void persist(UserCart transientInstance) {
 		log.debug("persisting UserCart instance");
 		try {
