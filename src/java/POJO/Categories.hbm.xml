@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="POJO.Categories" table="CATEGORIES" schema="BOOKSTORE">
+        <id name="categoryId" type="string">
+            <column name="CATEGORY_ID" length="100" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categories" class="POJO.Categories" fetch="select">
+            <column name="CATEGORY_PARENT" length="100" />
+        </many-to-one>
+        <property name="categoryName" type="string">
+            <column name="CATEGORY_NAME" length="200" not-null="true" />
+        </property>
+        <set name="bookses" table="BOOKS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CATEGORY_ID_FK" length="100" not-null="true" />
+            </key>
+            <one-to-many class="POJO.Books" />
+        </set>
+        <set name="categorieses" table="CATEGORIES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CATEGORY_PARENT" length="100" />
+            </key>
+            <one-to-many class="POJO.Categories" />
+        </set>
+    </class>
+</hibernate-mapping>

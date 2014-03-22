@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="POJO.Userinfo" table="USERINFO" schema="BOOKSTORE">
+        <id name="userId" type="string">
+            <column name="USER_ID" length="100" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="USER_NAME" length="200" not-null="true" />
+        </property>
+        <property name="userEmail" type="string">
+            <column name="USER_EMAIL" length="200" not-null="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="USER_PASSWORD" length="200" not-null="true" />
+        </property>
+        <property name="userBirthdate" type="string">
+            <column name="USER_BIRTHDATE" length="10" not-null="true" />
+        </property>
+        <property name="userJob" type="string">
+            <column name="USER_JOB" length="200" />
+        </property>
+        <property name="userCreditnumber" type="string">
+            <column name="USER_CREDITNUMBER" length="30" />
+        </property>
+        <property name="userCreditbalance" type="double">
+            <column name="USER_CREDITBALANCE" precision="5" scale="0" not-null="true" />
+        </property>
+        <property name="userInterests" type="string">
+            <column name="USER_INTERESTS" length="200" />
+        </property>
+        <property name="userImage" type="string">
+            <column name="USER_IMAGE" length="500" />
+        </property>
+        <set name="userCarts" table="USER_CART" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USER_ID_FK" length="100" not-null="true" />
+            </key>
+            <one-to-many class="POJO.UserCart" />
+        </set>
+    </class>
+</hibernate-mapping>

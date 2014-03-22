@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="POJO.Books" table="BOOKS" schema="BOOKSTORE">
+        <id name="isbn" type="string">
+            <column name="ISBN" length="50" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categories" class="POJO.Categories" fetch="select">
+            <column name="CATEGORY_ID_FK" length="100" not-null="true" />
+        </many-to-one>
+        <property name="bookName" type="string">
+            <column name="BOOK_NAME" length="200" not-null="true" />
+        </property>
+        <property name="bookAuthor" type="string">
+            <column name="BOOK_AUTHOR" length="200" not-null="true" />
+        </property>
+        <property name="bookPublishedDate" type="date">
+            <column name="BOOK_PUBLISHED_DATE" length="7" not-null="true" />
+        </property>
+        <property name="bookType" type="string">
+            <column name="BOOK_TYPE" length="50" not-null="true" />
+        </property>
+        <property name="bookAddedDate" type="date">
+            <column name="BOOK_ADDED_DATE" length="7" not-null="true" />
+        </property>
+        <property name="bookImage" type="string">
+            <column name="BOOK_IMAGE" length="200" not-null="true" />
+        </property>
+        <property name="bookPrice" type="double">
+            <column name="BOOK_PRICE" precision="126" scale="0" not-null="true" />
+        </property>
+        <property name="bookDescription" type="string">
+            <column name="BOOK_DESCRIPTION" length="4000" not-null="true" />
+        </property>
+        <property name="bookNumOfSales" type="int">
+            <column name="BOOK_NUM_OF_SALES" precision="7" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

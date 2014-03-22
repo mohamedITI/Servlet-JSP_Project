@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="POJO.UserCart" table="USER_CART" schema="BOOKSTORE">
+        <id name="bookImage" type="string">
+            <column name="BOOK_IMAGE" length="500" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="userinfo" class="POJO.Userinfo" fetch="select">
+            <column name="USER_ID_FK" length="100" not-null="true" />
+        </many-to-one>
+        <property name="bookName" type="string">
+            <column name="BOOK_NAME" length="200" not-null="true" />
+        </property>
+        <property name="quantity" type="short">
+            <column name="QUANTITY" precision="4" scale="0" not-null="true" />
+        </property>
+        <property name="bookUnitprice" type="double">
+            <column name="BOOK_UNITPRICE" precision="10" scale="0" not-null="true" />
+        </property>
+        <property name="totalprice" type="double">
+            <column name="TOTALPRICE" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
