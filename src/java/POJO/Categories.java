@@ -25,6 +25,13 @@ public class Categories implements java.io.Serializable {
 	}
 
 	public Categories(String categoryId, Categories categories,
+			String categoryName) {
+		this.categoryId = categoryId;
+		this.categories = categories;
+		this.categoryName = categoryName;
+	}
+
+	public Categories(String categoryId, Categories categories,
 			String categoryName, Set bookses, Set categorieses) {
 		this.categoryId = categoryId;
 		this.categories = categories;

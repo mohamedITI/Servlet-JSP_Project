@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +14,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <jsp:forward page="getBookInfoByISBN">
+            <jsp:param name="ISBN" value="ISBN1"/>
+        </jsp:forward>
     </body>
 </html>

@@ -144,11 +144,11 @@ public class BooksHome {
 				.add(Restrictions.idEq(isbn));
             List result = criteria.list();
 		
-		for(Object book : result)
-		{
-			Books bok = (Books)book;
-			return bok;
-		}
+            for(Object book : result)
+            {
+                Books bok = (Books)book;
+		return bok;
+            }
             return null; 
         }
 }

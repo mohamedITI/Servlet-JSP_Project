@@ -40,11 +40,15 @@ public class getBookInfoByISBN extends HttpServlet {
         try {
             /* TODO output your page here. You may use following sample code. */
             
-            String ISBN = (String)request.getAttribute("ISBN");
+            String ISBN = (String)request.getParameter("ISBN");
             BooksHome BooksDAO = new BooksHome();
             Books book = BooksDAO.getBookInfoByISBN(ISBN);
             
             request.setAttribute("getBookByISBN", book);
+            
+            out.println("name of book is: " + book.getBookName());
+            
+            System.out.println("name of book is: " + book.getBookName());
             
         } finally {
             out.close();
