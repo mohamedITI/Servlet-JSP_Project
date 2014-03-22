@@ -1,32 +1,36 @@
-package POJO;
+package BooksServletsAndDAO;
 
 // Generated Mar 20, 2014 1:15:32 AM by Hibernate Tools 3.4.0.CR1
 
+import POJO.Books;
+import POJO.Categories;
 import java.util.List;
-import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 /**
- * Home object for domain model class Categories.
- * @see POJO.Categories
+ * Home object for domain model class Books.
+ * @see POJO.Books
  * @author Hibernate Tools
  */
-public class CategoriesHome {
+public class BooksHome {
 
-	private static final Log log = LogFactory.getLog(CategoriesHome.class);
-        private Session session;
+	private static final Log log = LogFactory.getLog(BooksHome.class);
+
+	private Session session;
 	private final SessionFactory sessionFactory = getSessionFactory();
-        
-        public SessionFactory getSessionFactory() {
+
+	public SessionFactory getSessionFactory() {
 		return HibernateUtil.getSessionFactory();
 	}
 
-        public CategoriesHome() {
+        public BooksHome() {
             session = sessionFactory.openSession();
         }
 
@@ -43,12 +47,13 @@ public class CategoriesHome {
             session.getTransaction().commit();
         }
 
-	public void persist(Categories transientInstance) {
-		log.debug("persisting Categories instance");
+	public void persist(Books transientInstance) {
+		log.debug("persisting Books instance");
 		try {
 			beginTransaction();
 			session.persist(transientInstance);
 			commitTransaction();
+			log.debug("persist successful");
                         
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
@@ -56,8 +61,8 @@ public class CategoriesHome {
 		}
 	}
 
-	public void attachDirty(Categories instance) {
-		log.debug("attaching dirty Categories instance");
+	public void attachDirty(Books instance) {
+		log.debug("attaching dirty Books instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -67,8 +72,8 @@ public class CategoriesHome {
 		}
 	}
 
-	public void attachClean(Categories instance) {
-		log.debug("attaching clean Categories instance");
+	public void attachClean(Books instance) {
+		log.debug("attaching clean Books instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -78,8 +83,8 @@ public class CategoriesHome {
 		}
 	}
 
-	public void delete(Categories persistentInstance) {
-		log.debug("deleting Categories instance");
+	public void delete(Books persistentInstance) {
+		log.debug("deleting Books instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -89,11 +94,11 @@ public class CategoriesHome {
 		}
 	}
 
-	public Categories merge(Categories detachedInstance) {
-		log.debug("merging Categories instance");
+	public Books merge(Books detachedInstance) {
+		log.debug("merging Books instance");
 		try {
-			Categories result = (Categories) sessionFactory.getCurrentSession()
-					.merge(detachedInstance);
+			Books result = (Books) sessionFactory.getCurrentSession().merge(
+					detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -102,11 +107,11 @@ public class CategoriesHome {
 		}
 	}
 
-	public Categories findById(java.lang.String id) {
-		log.debug("getting Categories instance with id: " + id);
+	public Books findById(java.lang.String id) {
+		log.debug("getting Books instance with id: " + id);
 		try {
-			Categories instance = (Categories) sessionFactory
-					.getCurrentSession().get("POJO.Categories", id);
+			Books instance = (Books) sessionFactory.getCurrentSession().get(
+					"POJO.Books", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -119,12 +124,12 @@ public class CategoriesHome {
 		}
 	}
 
-	public List findByExample(Categories instance) {
-		log.debug("finding Categories instance by example");
+	public List findByExample(Books instance) {
+		log.debug("finding Books instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("POJO.Categories")
-					.add(Example.create(instance)).list();
+					.createCriteria("POJO.Books").add(Example.create(instance))
+					.list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
 			return results;
@@ -133,4 +138,17 @@ public class CategoriesHome {
 			throw re;
 		}
 	}
+        public Books getBookInfoByISBN(String isbn)
+        {
+            Criteria criteria = session.createCriteria(Books.class)
+				.add(Restrictions.idEq(isbn));
+            List result = criteria.list();
+		
+		for(Object book : result)
+		{
+			Books bok = (Books)book;
+			return bok;
+		}
+            return null; 
+        }
 }

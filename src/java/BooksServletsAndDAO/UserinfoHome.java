@@ -1,7 +1,8 @@
-package POJO;
+package BooksServletsAndDAO;
 
 // Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1
 
+import POJO.Userinfo;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
@@ -11,13 +12,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class UserCart.
- * @see POJO.UserCart
+ * Home object for domain model class Userinfo.
+ * @see POJO.Userinfo
  * @author Hibernate Tools
  */
-public class UserCartHome {
+public class UserinfoHome {
 
-	private static final Log log = LogFactory.getLog(UserCartHome.class);
+	private static final Log log = LogFactory.getLog(UserinfoHome.class);
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -32,8 +33,8 @@ public class UserCartHome {
 		}
 	}
 
-	public void persist(UserCart transientInstance) {
-		log.debug("persisting UserCart instance");
+	public void persist(Userinfo transientInstance) {
+		log.debug("persisting Userinfo instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
 			log.debug("persist successful");
@@ -43,8 +44,8 @@ public class UserCartHome {
 		}
 	}
 
-	public void attachDirty(UserCart instance) {
-		log.debug("attaching dirty UserCart instance");
+	public void attachDirty(Userinfo instance) {
+		log.debug("attaching dirty Userinfo instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -54,8 +55,8 @@ public class UserCartHome {
 		}
 	}
 
-	public void attachClean(UserCart instance) {
-		log.debug("attaching clean UserCart instance");
+	public void attachClean(Userinfo instance) {
+		log.debug("attaching clean Userinfo instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			log.debug("attach successful");
@@ -65,8 +66,8 @@ public class UserCartHome {
 		}
 	}
 
-	public void delete(UserCart persistentInstance) {
-		log.debug("deleting UserCart instance");
+	public void delete(Userinfo persistentInstance) {
+		log.debug("deleting Userinfo instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -76,10 +77,10 @@ public class UserCartHome {
 		}
 	}
 
-	public UserCart merge(UserCart detachedInstance) {
-		log.debug("merging UserCart instance");
+	public Userinfo merge(Userinfo detachedInstance) {
+		log.debug("merging Userinfo instance");
 		try {
-			UserCart result = (UserCart) sessionFactory.getCurrentSession()
+			Userinfo result = (Userinfo) sessionFactory.getCurrentSession()
 					.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
@@ -89,11 +90,11 @@ public class UserCartHome {
 		}
 	}
 
-	public UserCart findById(java.lang.String id) {
-		log.debug("getting UserCart instance with id: " + id);
+	public Userinfo findById(java.lang.String id) {
+		log.debug("getting Userinfo instance with id: " + id);
 		try {
-			UserCart instance = (UserCart) sessionFactory.getCurrentSession()
-					.get("POJO.UserCart", id);
+			Userinfo instance = (Userinfo) sessionFactory.getCurrentSession()
+					.get("POJO.Userinfo", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
 			} else {
@@ -106,11 +107,11 @@ public class UserCartHome {
 		}
 	}
 
-	public List findByExample(UserCart instance) {
-		log.debug("finding UserCart instance by example");
+	public List findByExample(Userinfo instance) {
+		log.debug("finding Userinfo instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession()
-					.createCriteria("POJO.UserCart")
+					.createCriteria("POJO.Userinfo")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
