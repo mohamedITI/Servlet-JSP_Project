@@ -1,12 +1,14 @@
-package BooksServletsAndDAO;
+package UserServletsAndDAO;
 
 // Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1
 
+import BooksServletsAndDAO.HibernateUtil;
 import POJO.UserCart;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
@@ -23,14 +25,7 @@ public class UserCartHome {
 	private final SessionFactory sessionFactory = getSessionFactory();
 
 	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext()
-					.lookup("SessionFactory");
-		} catch (Exception e) {
-			log.error("Could not locate SessionFactory in JNDI", e);
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
-		}
+		return HibernateUtil.getSessionFactory();
 	}
 
 	public void persist(UserCart transientInstance) {

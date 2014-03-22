@@ -12,6 +12,10 @@
         <servlet-name>GetBooksByAutherName</servlet-name>
         <servlet-class>BooksServletsAndDAO.GetBooksByAuthorName</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>UserServletsAndDAO.Register</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetBookInfoByISBN</servlet-name>
         <url-pattern>/getBookInfoByISBN</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>GetBooksByAutherName</servlet-name>
         <url-pattern>/getBooksByAutherName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

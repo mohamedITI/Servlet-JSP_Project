@@ -1,4 +1,4 @@
-package BooksServletsAndDAO;
+package UserServletsAndDAO;
 
 // Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1
 
