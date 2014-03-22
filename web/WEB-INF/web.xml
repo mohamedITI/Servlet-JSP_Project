@@ -4,9 +4,17 @@
         <servlet-name>getBookInfoByISBN</servlet-name>
         <servlet-class>BooksServletsAndDAO.getBookInfoByISBN</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getBooksListByCategoryName</servlet-name>
+        <servlet-class>BooksServletsAndDAO.getBooksListByCategoryName</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getBookInfoByISBN</servlet-name>
         <url-pattern>/getBookInfoByISBN</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getBooksListByCategoryName</servlet-name>
+        <url-pattern>/getBooksListByCategoryName</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

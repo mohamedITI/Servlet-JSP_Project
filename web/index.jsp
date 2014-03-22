@@ -14,8 +14,12 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <%--
         <jsp:forward page="getBookInfoByISBN">
             <jsp:param name="ISBN" value="ISBN1"/>
+        </jsp:forward>--%>
+        <jsp:forward page="getBooksListByCategoryName">
+            <jsp:param name="categoryName" value="MC_ENG"/>
         </jsp:forward>
     </body>
 </html>

@@ -4,7 +4,9 @@ package BooksServletsAndDAO;
 
 import POJO.Books;
 import POJO.Categories;
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Query;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
@@ -151,4 +153,21 @@ public class BooksHome {
             }
             return null; 
         }
+        
+        public ArrayList<Books> getBooksList(String  categoryName)
+        {
+            Query query = session.createQuery("select b from Books b join b.categories c where c.categoryId = ?").setString(0, categoryName);
+            
+            List result = query.list();
+            ArrayList<Books> booksList = new ArrayList();
+            for(Object book : result)
+            {
+                booksList.add((Books)book);
+            }
+            if(booksList.size() > 0) 
+                return booksList;
+            else 
+                return null;
+        }
+        
 }
