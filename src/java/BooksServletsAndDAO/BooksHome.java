@@ -14,6 +14,7 @@ import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -154,7 +155,7 @@ public class BooksHome {
             return null; 
         }
         
-        public ArrayList<Books> getBooksList(String  categoryName)
+        public ArrayList<Books> getBooksListByCategoryName(String  categoryName)
         {
             Query query = session.createQuery("select b from Books b join b.categories c where c.categoryId = ?").setString(0, categoryName);
             
@@ -170,4 +171,24 @@ public class BooksHome {
                 return null;
         }
         
+        public ArrayList<Books> getBooksByAuther(String authorName)
+        {
+            ArrayList<Books> authorBooks = new ArrayList();
+            Criteria criteria = session.createCriteria(Books.class, "b")
+                    .add(Restrictions.like("b.bookAuthor", authorName))
+                    .addOrder(Order.asc("b.bookName"));
+            
+            List result = criteria.list();
+        
+            Books book;
+            if(result.size() > 0)
+            for(Object c : result)
+            {            
+                book = (Books)c;
+                authorBooks.add(book);
+                System.out.println(book.getBookName());
+                return authorBooks;
+            }
+            return null;
+        }
 }

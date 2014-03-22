@@ -18,8 +18,14 @@
         <jsp:forward page="getBookInfoByISBN">
             <jsp:param name="ISBN" value="ISBN1"/>
         </jsp:forward>--%>
+        <%--
         <jsp:forward page="getBooksListByCategoryName">
             <jsp:param name="categoryName" value="MC_ENG"/>
+        </jsp:forward>--%>
+        
+        <jsp:forward page="getBooksByAutherName">
+            <jsp:param name="authorName" value="Dietil"/>
         </jsp:forward>
+        
     </body>
 </html>
