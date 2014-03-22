@@ -3,6 +3,7 @@ package UserServletsAndDAO;
 // Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1
 
 import BooksServletsAndDAO.HibernateUtil;
+import POJO.UserCart;
 import POJO.Userinfo;
 import java.util.List;
 import javax.naming.InitialContext;
@@ -49,8 +50,11 @@ public class UserinfoHome {
 	public void persist(Userinfo transientInstance) {
 		log.debug("persisting Userinfo instance");
 		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
+			beginTransaction();
+                        session.persist(transientInstance);
+                        commitTransaction();
 			log.debug("persist successful");
+                        
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
@@ -134,4 +138,11 @@ public class UserinfoHome {
 			throw re;
 		}
 	}
+        
+        public String register(Userinfo user)
+        {
+            Userinfo userinfo = new Userinfo(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), user.getUserPassword(), user.getUserBirthdate(), user.getUserJob(), user.getUserCreditbalance(), user.getUserInterests(), user.getUserImage(), null);
+            
+            return null;
+        }
 }
