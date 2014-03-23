@@ -13,14 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 
 /**
  *
  * @author Mohamed-ITI
  */
-public class Register extends HttpServlet {
+public class GetUserinfo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +34,17 @@ public class Register extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
+            /* TODO output your page here. You may use following sample code. */
+            UserinfoHome userinfoDAO = new UserinfoHome();
+            Userinfo userinfo = userinfoDAO.findByEmail(request.getParameter("email"));
             
-            Userinfo user = (Userinfo)session.getAttribute("user");
-            if(user != null)
-            System.out.println(user.getUserName() + "+++++++++++++++++++++++++++++");
-            else 
-                System.out.println("+++++++++++++++++++++++++++++");
-            
-            UserinfoHome userDAO = new UserinfoHome();
-            if(userDAO.register(user) == "done")
+            if(userinfo != null)
             {
-                System.out.println("Register servlet called :)");
-                out.println("done");
+                //response.sendRedirect("");   //hena hakteb el url le el page elly 3ayez aro7llaha
+                out.println("user exist");
             }
-            else 
-            {
-                System.out.println("register failed :( ");
-                out.println("user already exist");
-            }
-            
-            
+            else
+                out.println("user not exist");
             
         } finally {
             out.close();

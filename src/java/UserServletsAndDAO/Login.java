@@ -13,14 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 
 /**
  *
  * @author Mohamed-ITI
  */
-public class Register extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +34,18 @@ public class Register extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
+            /* TODO output your page here. You may use following sample code. */
             
-            Userinfo user = (Userinfo)session.getAttribute("user");
-            if(user != null)
-            System.out.println(user.getUserName() + "+++++++++++++++++++++++++++++");
-            else 
-                System.out.println("+++++++++++++++++++++++++++++");
-            
-            UserinfoHome userDAO = new UserinfoHome();
-            if(userDAO.register(user) == "done")
+            UserinfoHome userinfoDAO = new UserinfoHome();
+            Userinfo userinfo = userinfoDAO.checkLogin((String)request.getParameter("email"), (String)request.getParameter("password"));
+            if(userinfo != null)
             {
-                System.out.println("Register servlet called :)");
-                out.println("done");
+                request.setAttribute("userinfo", userinfo);
+                out.println("login true");
             }
-            else 
-            {
-                System.out.println("register failed :( ");
-                out.println("user already exist");
-            }
-            
-            
+            else
+                out.println("Login Faild");
+                
             
         } finally {
             out.close();

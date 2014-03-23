@@ -145,9 +145,13 @@ public class UserinfoHome {
         
         public String register(Userinfo user)
         {
-            Userinfo userinfo = new Userinfo(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), user.getUserPassword(), user.getUserBirthdate(), user.getUserJob(), user.getUserCreditbalance(), user.getUserInterests(), user.getUserImage(), null);
-            persist(userinfo);
-            return "done";
+            if(findByEmail(user.getUserEmail())==null)
+            {
+                Userinfo userinfo = new Userinfo(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), user.getUserPassword(), user.getUserBirthdate(), user.getUserJob(), user.getUserCreditbalance(), user.getUserInterests(), user.getUserImage(), null);
+                persist(userinfo);
+                return "done";
+            }
+            return "user already exist";
         }
         
         public Userinfo findByEmail(String email)
@@ -162,5 +166,13 @@ public class UserinfoHome {
             return null;
         }
         
-        
+        public Userinfo checkLogin(String email, String password)
+        {
+            Criteria criteria = session.createCriteria(Userinfo.class)
+                    .add(Restrictions.eq("userEmail", email))
+                    .add(Restrictions.eq("userPassword", password));
+            if(criteria.list().size() > 0)
+                return findByEmail(email);
+            return null;
+        }
 }

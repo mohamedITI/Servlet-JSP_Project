@@ -11,8 +11,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
@@ -112,7 +114,7 @@ public class UserCartHome {
 	public UserCart findById(java.lang.String id) {
 		log.debug("getting UserCart instance with id: " + id);
 		try {
-			UserCart instance = (UserCart) sessionFactory.getCurrentSession()
+			UserCart instance = (UserCart) getSessionFactory().getCurrentSession()
 					.get("POJO.UserCart", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
@@ -140,19 +142,52 @@ public class UserCartHome {
 			throw re;
 		}
 	}
+        /*
+        public static void main(String[] args)
+        {
+            UserinfoHome ui = new UserinfoHome();
+            ui.findByEmail("mohamed@java.com");
+            UserCart uc = new UserCart("bookimage",ui.findByEmail("mohamed@java.com"), "bookname", (short)3, 6);
+            
+        }*/
         
         public boolean addProductToShopingCart(Books book,String email)
         {
             UserinfoHome userinfoDAO = new UserinfoHome();
+            UserCart cart = new UserCart();
             
-            if(session.createCriteria(Userinfo.class).add(Restrictions.eq("bookName", book.getBookName())).list().size() > 0)
+            if(session.createCriteria(UserCart.class).add(Restrictions.eq("bookName", book.getBookName())).list().size() > 0)
             {
-                getQuantity(book.getBookName());
+                
+                beginTransaction();
+                Query query = getSessionFactory().getCurrentSession().createSQLQuery("update user_cart"
+                        + " set quantity = " + (getQuantity(book.getBookName())+1)
+                        + "where book_name = " + book.getBookName() + " and user_id_fk = 'firstID'");
+                query.executeUpdate();
+                commitTransaction();
+                
+                /*
+                beginTransaction();
+                Criteria criteria = session.createCriteria(UserCart.class,"uc")
+                        .add(Restrictions.like("bookName", book.getBookName()))
+                        .add(Restrictions.eq("uc.userinfo.userEmail", email));
+                         
+                        
+                List result = criteria.list();
+                UserCart uc = null;
+                for(Object obj : result)
+                {
+                    uc = (UserCart)obj;
+                }
+                uc.setQuantity((short)(getQuantity(book.getBookName())+1));
+                getSessionFactory().getCurrentSession().update(uc);
+                commitTransaction();*/
+                    
+                System.out.println("Quantity raised by one");
+                
             }
             else
             {
-                UserCart cart = new UserCart();
-                
                 cart.setBookImage(book.getBookImage());
                 cart.setBookName(book.getBookName());
                 cart.setQuantity((short)1);
@@ -170,7 +205,7 @@ public class UserCartHome {
         
         private double getTotalPrice(double bookPrice)
         {
-            return 100;
+            return 2;
         }
         private short getQuantity(String bookName)
         {
@@ -186,4 +221,6 @@ public class UserCartHome {
             }
             return -1;
         }
+        
+        
 }
