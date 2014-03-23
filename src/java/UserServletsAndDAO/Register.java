@@ -37,7 +37,7 @@ public class Register extends HttpServlet {
             
             Userinfo user = (Userinfo)request.getAttribute("user");
             UserinfoHome userDAO = new UserinfoHome();
-            userDAO.
+            userDAO.register(user);
             
         } finally {
             out.close();
