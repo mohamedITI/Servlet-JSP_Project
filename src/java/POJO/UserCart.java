@@ -12,19 +12,17 @@ public class UserCart implements java.io.Serializable {
 	private String bookName;
 	private short quantity;
 	private double bookUnitprice;
-	private double totalprice;
 
 	public UserCart() {
 	}
 
 	public UserCart(String bookImage, Userinfo userinfo, String bookName,
-			short quantity, double bookUnitprice, double totalprice) {
+			short quantity, double bookUnitprice) {
 		this.bookImage = bookImage;
 		this.userinfo = userinfo;
 		this.bookName = bookName;
 		this.quantity = quantity;
 		this.bookUnitprice = bookUnitprice;
-		this.totalprice = totalprice;
 	}
 
 	public String getBookImage() {
@@ -65,14 +63,6 @@ public class UserCart implements java.io.Serializable {
 
 	public void setBookUnitprice(double bookUnitprice) {
 		this.bookUnitprice = bookUnitprice;
-	}
-
-	public double getTotalprice() {
-		return this.totalprice;
-	}
-
-	public void setTotalprice(double totalprice) {
-		this.totalprice = totalprice;
 	}
 
 }

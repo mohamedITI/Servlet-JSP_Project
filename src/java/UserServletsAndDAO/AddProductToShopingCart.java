@@ -6,7 +6,7 @@
 
 package UserServletsAndDAO;
 
-import POJO.Userinfo;
+import POJO.Books;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,13 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 
 /**
  *
  * @author Mohamed-ITI
  */
-public class Register extends HttpServlet {
+public class AddProductToShopingCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,21 +35,18 @@ public class Register extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             
-            Userinfo user = (Userinfo)session.getAttribute("user");
-            if(user != null)
-            System.out.println(user.getUserName() + "+++++++++++++++++++++++++++++");
-            else 
-                System.out.println("+++++++++++++++++++++++++++++");
+            Books book = (Books)session.getAttribute("book");
+            String email = (String)request.getParameter("email");
+            UserCartHome userCartDAO = new UserCartHome();
             
-            UserinfoHome userDAO = new UserinfoHome();
-            if(userDAO.register(user) == "done")
-                System.out.println("Register servlet called :)");
-            else 
-                System.out.println("register failed :( ");
-            
-            out.println("Good Job :) You regitered now");
+            if(userCartDAO.addProductToShopingCart(book, email))
+            {
+                out.println("book added :)");
+            }
+            System.out.println("AddProductToShopingCart servlet called :)");
             
         } finally {
             out.close();

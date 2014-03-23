@@ -3,16 +3,20 @@ package UserServletsAndDAO;
 // Generated Mar 22, 2014 10:38:49 AM by Hibernate Tools 3.4.0.CR1
 
 import BooksServletsAndDAO.HibernateUtil;
+import POJO.Books;
 import POJO.UserCart;
 import POJO.Userinfo;
 import java.util.List;
 import javax.naming.InitialContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Home object for domain model class Userinfo.
@@ -142,7 +146,21 @@ public class UserinfoHome {
         public String register(Userinfo user)
         {
             Userinfo userinfo = new Userinfo(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), user.getUserPassword(), user.getUserBirthdate(), user.getUserJob(), user.getUserCreditbalance(), user.getUserInterests(), user.getUserImage(), null);
-            
+            persist(userinfo);
+            return "done";
+        }
+        
+        public Userinfo findByEmail(String email)
+        {
+            Criteria criteria = session.createCriteria(Userinfo.class)
+                        .add(Restrictions.eq("userEmail", email));
+            List result = criteria.list();
+            for(Object user : result)
+            {
+                return (Userinfo)user;
+            }
             return null;
         }
+        
+        
 }

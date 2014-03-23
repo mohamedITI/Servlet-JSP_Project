@@ -16,6 +16,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>UserServletsAndDAO.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProductToShopingCart</servlet-name>
+        <servlet-class>UserServletsAndDAO.AddProductToShopingCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetBookInfoByISBN</servlet-name>
         <url-pattern>/getBookInfoByISBN</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductToShopingCart</servlet-name>
+        <url-pattern>/AddProductToShopingCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

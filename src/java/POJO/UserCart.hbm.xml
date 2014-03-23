@@ -19,9 +19,6 @@
         </property>
         <property name="bookUnitprice" type="double">
             <column name="BOOK_UNITPRICE" precision="10" scale="0" not-null="true" />
-        </property>
-        <property name="totalprice" type="double">
-            <column name="TOTALPRICE" precision="12" scale="0" not-null="true" />
-        </property>
+        </property>        
     </class>
 </hibernate-mapping>

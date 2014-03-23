@@ -22,10 +22,40 @@
         <jsp:forward page="getBooksListByCategoryName">
             <jsp:param name="categoryName" value="MC_ENG"/>
         </jsp:forward>--%>
-        
+        <%--
         <jsp:forward page="getBooksByAutherName">
             <jsp:param name="authorName" value="Dietil"/>
+        </jsp:forward>--%>
+        <%--
+        <jsp:useBean id="user" scope="session" class="POJO.Userinfo">            
+        </jsp:useBean>
+        
+        <jsp:setProperty name="user" property="userId" value="firstID"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userName" value="Mohamed Ibrahim"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userEmail" value="mohamed@java.com"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userPassword" value="password"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userBirthdate" value="01/01/1990"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userJob" value="Clerk"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userCreditnumber" value="56893222222"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userCreditbalance" value="100"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userInterests" value="Programming"></jsp:setProperty>
+        <jsp:setProperty name="user" property="userImage" value="userImageeeee"></jsp:setProperty>
+        
+        <jsp:forward page="Register"/> --%>
+        
+        
+        <jsp:useBean id="book" scope="session" class="POJO.Books">            
+        </jsp:useBean>
+        
+        <jsp:setProperty name="book" property="bookImage" value="bookimage"></jsp:setProperty>
+        <jsp:setProperty name="book" property="bookName" value="bookname"></jsp:setProperty>
+        <jsp:setProperty name="book" property="bookPrice" value="6"></jsp:setProperty>
+        
+        <jsp:forward page="AddProductToShopingCart">
+            <jsp:param name="email" value="mohamed@java.com"/>
         </jsp:forward>
+        
+         
         
     </body>
 </html>
