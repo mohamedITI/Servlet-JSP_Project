@@ -55,7 +55,11 @@
             <jsp:param name="email" value="mohamed@java.com"/>
         </jsp:forward>
         
-         
+        <%--
+         <jsp:forward page="Login">
+            <jsp:param name="email" value="mohamed@java.com"/>
+            <jsp:param name="password" value="password"/>
+        </jsp:forward>--%>
         
     </body>
 </html>

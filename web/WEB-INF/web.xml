@@ -20,6 +20,14 @@
         <servlet-name>AddProductToShopingCart</servlet-name>
         <servlet-class>UserServletsAndDAO.AddProductToShopingCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>UserServletsAndDAO.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetUserinfo</servlet-name>
+        <servlet-class>UserServletsAndDAO.GetUserinfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetBookInfoByISBN</servlet-name>
         <url-pattern>/getBookInfoByISBN</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>AddProductToShopingCart</servlet-name>
         <url-pattern>/AddProductToShopingCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetUserinfo</servlet-name>
+        <url-pattern>/GetUserinfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

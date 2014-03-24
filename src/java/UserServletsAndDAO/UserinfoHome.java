@@ -145,7 +145,7 @@ public class UserinfoHome {
         
         public String register(Userinfo user)
         {
-            if(findByEmail(user.getUserEmail())==null)
+            if(findByEmail(user.getUserEmail())== null)
             {
                 Userinfo userinfo = new Userinfo(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), user.getUserPassword(), user.getUserBirthdate(), user.getUserJob(), user.getUserCreditbalance(), user.getUserInterests(), user.getUserImage(), null);
                 persist(userinfo);
